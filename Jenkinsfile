@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone the Git repository
-                git 'https://github.com/madhusudhans72/demo.git'
+                // Clone the Git repository 
+                git branch: 'main', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
             }
         }
         

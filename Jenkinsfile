@@ -1,4 +1,4 @@
-properties = null
+def properties = null
 
 def loadProperties() {
     node {
@@ -7,27 +7,25 @@ def loadProperties() {
         echo "Immediate one ${properties.repo}"
     }
 }
+
 pipeline {
     agent any
     stages {           
-        stage ('prepare') {
+        stage('prepare') {
             agent any
-
             steps {
                 script {
                     loadProperties()
                     echo "Later one ${properties.ansible}"
                 }
             }
-        
-    stages {
+        }
         stage('Clone Repository') {
             steps {
                 // Clone the Git repository 
                 git branch: 'main', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
             }
         }
-        
         stage('Build') {
             steps {
                 sh 'python3 run.py'

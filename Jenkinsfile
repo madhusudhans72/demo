@@ -1,10 +1,17 @@
 def properties = null
 
+
 def loadProperties() {
-    node {
-        checkout scm
-        properties = readProperties file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties'
-        echo "Immediate one ${properties.repo}"
+    try {
+        node {
+            checkout scm
+            properties = readProperties file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties'
+            echo "Immediate one ${properties.repo}"
+        }
+    } catch (Exception e) {
+        echo "Failed to load properties: ${e.message}"
+        currentBuild.result = 'FAILURE'
+        error("Failed to load properties")
     }
 }
 

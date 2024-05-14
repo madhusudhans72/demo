@@ -1,1 +1,1 @@
-print("hello from check1")
+print("hello from different check")

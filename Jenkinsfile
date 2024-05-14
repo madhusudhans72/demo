@@ -1,23 +1,18 @@
 pipeline {
-  agent { label 'Built-In Node'}
-  options {
-    skipDefaultCheckout(true)
-  }
-  stages{
-    stage('clean workspace') {
-      steps {
-        cleanWs()
-      }
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Clone the Git repository
+                git 'https://github.com/yourusername/yourrepository.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                python3 run.py
+            }
+        }
     }
-    stage('checkout') {
-      steps {
-        checkout scm
-      }
-    }
-  }
-  post {
-    always {
-      cleanWs()
-    }
-  }
 }

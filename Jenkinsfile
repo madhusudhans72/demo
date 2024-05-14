@@ -11,7 +11,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'pwd'
+                sh 'python3 run.py'
             }
         }
     }

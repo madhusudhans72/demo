@@ -11,7 +11,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                python3 run.py
+                pwd
             }
         }
     }

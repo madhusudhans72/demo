@@ -22,9 +22,10 @@ pipeline {
         }
         stage('Clone Repository') {
             steps {
-                // Clone the Git repository 
-                
-                git branch: 'main', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
+                script {
+                    // Clone the Git repository 
+                    git branch: 'main', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
+                }
             }
         }
         stage('Build') {

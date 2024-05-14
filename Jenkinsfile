@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     loadProperties()
-                    echo "Later one ${properties.ansible}"
+                    
                 }
             }
         }

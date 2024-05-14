@@ -23,7 +23,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the Git repository 
-                git branch: ${properties.repo}, credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
+                git branch: '${props["repo"]}', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
             }
         }
         stage('Build') {

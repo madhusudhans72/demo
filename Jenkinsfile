@@ -1,12 +1,13 @@
-def properties = null
+def props = [:]
 
-def loadProperties() {
-    node {
-        checkout scm
-        properties = readProperties file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties'
-        echo "Immediate one ${properties.repo}"
-    }
+podTemplate {
+  node(POD_LABEL) {
+    checkout scm
+    properties = readProperties(defaults: d, file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties')
+  }
 }
+
+
 
 pipeline {
     agent any
@@ -23,7 +24,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the Git repository 
-                properties = readProperties file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties'
+                
                 git branch: '${properties.repo}', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
             }
         }

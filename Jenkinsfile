@@ -19,7 +19,7 @@ pipeline {
                     echo "Later one ${properties.ansible}"
                 }
             }
-        }
+        
     stages {
         stage('Clone Repository') {
             steps {

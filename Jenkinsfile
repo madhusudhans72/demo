@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Clone the Git repository 
-                    git branch: 'main', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
+                    git branch: '${properties.repo}', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
                 }
             }
         }

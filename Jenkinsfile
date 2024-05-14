@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     loadProperties()
-                    echo "Immediate one ${properties.repo}"
+                    echo "Immediate two ${properties.repo}"
                 }
             }
         }
@@ -32,6 +32,7 @@ pipeline {
             steps {
                 script {
                     // Clone the Git repository 
+                    loadProperties()
                     git branch: '${properties.repo}', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
                 }
             }

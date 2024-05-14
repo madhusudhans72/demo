@@ -1,13 +1,12 @@
-def props = [:]
+def properties = null
 
-podTemplate {
-  node(POD_LABEL) {
-    checkout scm
-    properties = readProperties(defaults: d, file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties')
-  }
+def loadProperties() {
+    node {
+        checkout scm
+        properties = readProperties file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties'
+        echo "Immediate one ${properties.repo}"
+    }
 }
-
-
 
 pipeline {
     agent any
@@ -17,7 +16,7 @@ pipeline {
             steps {
                 script {
                     loadProperties()
-                    
+                    echo "Immediate one ${properties.repo}"
                 }
             }
         }
@@ -25,7 +24,7 @@ pipeline {
             steps {
                 // Clone the Git repository 
                 
-                git branch: '${properties.repo}', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
+                git branch: 'main', credentialsId: 'madhusudhans72', url: 'https://github.com/madhusudhans72/demo.git'
             }
         }
         stage('Build') {

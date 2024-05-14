@@ -1,6 +1,25 @@
+properties = null
+
+def loadProperties() {
+    node {
+        checkout scm
+        properties = readProperties file: '/Users/madhusudhan.shivakumar/Desktop/pipeline.properties'
+        echo "Immediate one ${properties.repo}"
+    }
+}
 pipeline {
     agent any
+    stages {           
+        stage ('prepare') {
+            agent any
 
+            steps {
+                script {
+                    loadProperties()
+                    echo "Later one ${properties.ansible}"
+                }
+            }
+        }
     stages {
         stage('Clone Repository') {
             steps {

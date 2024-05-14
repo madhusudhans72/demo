@@ -1,4 +1,5 @@
-def properties = null
+import groovy.transform.Field
+@Field def properties = null
 
 
 def loadProperties() {
